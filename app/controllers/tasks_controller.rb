@@ -4,7 +4,7 @@ class TasksController < ApplicationController
         tasks =Task.all 
         tasks.to_json(include: [:type])
       end
-
+    # Create a new task
     post '/tasks' do 
       type = Type.find_or_create_by(name: params[:type][:name])
       task = type.tasks.build(params[:task])
@@ -14,8 +14,17 @@ class TasksController < ApplicationController
      else
       { errors: task.errors.full_messages }.to_json
      end
+end
 
-
-    end
+# Destroy a specific task
+delete '/tasks/:id' do
+  task = Task.find_by_id(params[:id])
+  if task
+    task.destroy
+    task.to_json
+  else
+    {errors: ["Task doesn't exist"]}
+end
+end
 
 end
