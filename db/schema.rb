@@ -12,13 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2022_01_27_195303) do
 
-  create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.integer "type_id"
+  create_table "authors", force: :cascade do |t|
+    t.string "name"
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "name"
+  create_table "books", force: :cascade do |t|
+    t.string "title"
+    t.text "summary"
+    t.integer "author_id"
   end
 
 end
