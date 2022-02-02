@@ -14,7 +14,19 @@ class BooksController < ApplicationController
        else
         { errors: @book.errors.full_messages }.to_json
        end
+
     end
+
+       delete '/books/:id' do
+        find_book
+        if @book
+        @book.destroy
+        @book.to_json
+        else
+            {errors: ["Book doesn't exist"]}.to_json
+        end
+       end
+    
 
 
       private
