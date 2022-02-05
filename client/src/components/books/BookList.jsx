@@ -1,9 +1,9 @@
 import React from 'react';
 import BookCard from './BookCard';
 
-const BookList = ({ books }) => {
+const BookList = ({ books, deleteBook }) => {
 
-    const bookCards = books.map((book) => <BookCard book={ book } key={ book.id }/>)
+    const bookCards = books.map((book) => <BookCard book={ book } key={ book.id } deleteBook={ deleteBook } />)
   return (
     
        <div>
