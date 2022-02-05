@@ -30,7 +30,8 @@ function App() {
    }
   
    const deleteBook = book => {
-     console.log("remove book from state(filter)", book)
+     //console.log("remove book from state(filter)", book)
+     setBooks(books.filter(b => b.id !== book.id))
    }
    const addErrors = errors => {
      setErrors(errors)

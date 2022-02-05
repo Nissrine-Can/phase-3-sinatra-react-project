@@ -1,12 +1,21 @@
 import React from 'react';
 import Card  from 'react-bootstrap/Card'
+import { baseUrl, headers } from '../../Globals';
 
 
 const BookCard = ({ book, deleteBook }) => {
 
   const handleDelete = () => {
-   console.log('fetch delete Sinatra')
-   deleteBook(book)
+   //console.log('fetch delete Sinatra')
+   fetch(baseUrl + "/books/" + book.id, {
+     method: "DELETE",
+     headers,  
+   })
+   .then(res => res.json())
+   .then(data => {
+     deleteBook(data)
+   })
+   
   }
 
   return (
