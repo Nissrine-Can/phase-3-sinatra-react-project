@@ -5,12 +5,21 @@ class BooksController < ApplicationController
       end
     
     post '/books' do 
+      errors = []
        @author =Author. find_or_create_by(name: params[:author][:name])
+
+       unless @author.id
+         errors = errors.concat(@author.errors.full_messages)
+       end
        #associated build
        @book = @author.books.build(params[:book])
 
-       if @book.save
+       if @author.id && @book.save
         @book.to_json(include: [:author])
+       elsif !@author.id && !@book.valid?
+         { errors: errors.concat(@book.errors.full_messages )}.to_json
+         elsif !@author.id && @book.valid?
+            { errors: errors }.to_json
        else
         { errors: @book.errors.full_messages }.to_json
        end
@@ -27,7 +36,6 @@ class BooksController < ApplicationController
         end
        end
     
-
 
       private
          def find_book

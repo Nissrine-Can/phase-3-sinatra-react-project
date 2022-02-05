@@ -5,6 +5,8 @@ class AuthorsController < ApplicationController
         @author.to_json(include: [:books])
     end
 
+    
+
     private
        def find_author
         @author = Author.find_by_id(params[:id])
