@@ -1,13 +1,35 @@
 import React from 'react';
+import Card  from 'react-bootstrap/Card'
+
 
 const BookCard = ({ book }) => {
+
   return (
-    <div>
-        <h3>{book.title}</h3>
-        <p><em>By: { book.author.name }</em></p>
-        <p>{ book.summary }</p>
-        <button>Delete</button>
+    <div className="container">
+  <div  className="row">
+    
+  <div className="col-lg-9">
+          <Card class="card">
+            <Card.Body>
+              <Card.Title>{book.title}</Card.Title>
+              <p><em>-By: { book.author.name }</em></p>
+              <Card.Text>
+              { book.summary }
+              </Card.Text>
+              <button className="btn btn-secondary">Delete</button>
+            </Card.Body>
+          </Card>
+      
+          </div>
     </div>
+    </div>
+      
+  
+      
+      
+      
+      
+    
   )
 }
 
