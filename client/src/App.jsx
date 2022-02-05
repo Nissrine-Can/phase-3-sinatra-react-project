@@ -10,12 +10,14 @@ import Home from './components/static/Home';
 import BookList from './components/books/BookList';
 import BookForm from './components/books/BookForm';
 import { baseUrl } from './Globals';
+import ErrorList from './components/errors/ErrorList';
 
 
 
 function App() {
 
    const [books, setBooks] = useState([])
+   const [errors, setErrors] = useState([])
 
    useEffect(() => {
      fetch(baseUrl + "/books")
@@ -23,13 +25,31 @@ function App() {
      .then(data => setBooks(data))
    }, [])
 
+   const addBook = book => {
+     setBooks([...books, book])
+   }
+  
+   const deleteBook = book => {
+     console.log("remove book from state(filter)", book)
+   }
+   const addErrors = errors => {
+     setErrors(errors)
+   }
+
+   const clearErrors = () => {
+     setErrors([])
+   }
+
   return (
     <Router>
          <Navbar />
+         <ErrorList errors={ errors }/>
          <Routes>
            <Route path="/" element={ <Home />} />
-           <Route path="/books" element={ <BookList books={ books }/>} />
-           <Route path="/books/new" element={ <BookForm/>} />
+           <Route path="/books" element={ <BookList books={ books } deleteBook={ deleteBook } />} />
+           <Route 
+           path="/books/new" 
+           element={ <BookForm addBook={ addBook } addErrors={ addErrors } clearErrors={ clearErrors } />} />
          </Routes>
     </Router>
   )
