@@ -11,6 +11,8 @@ import BookList from './components/books/BookList';
 import BookForm from './components/books/BookForm';
 import { baseUrl } from './Globals';
 import ErrorList from './components/errors/ErrorList';
+import Author from './components/authors/Author';
+
 
 
 
@@ -26,7 +28,7 @@ function App() {
    }, [])
 
    const addBook = book => {
-     setBooks([...books, book])
+     setBooks([book, ...books])
    }
   
    const deleteBook = book => {
@@ -46,11 +48,12 @@ function App() {
          <Navbar />
          <ErrorList errors={ errors }/>
          <Routes>
-           <Route path="/" element={ <Home />} />
-           <Route path="/books" element={ <BookList books={ books } deleteBook={ deleteBook } />} />
+           <Route exact path="/" element={ <Home />} />
+           <Route exact path="/books" element={ <BookList books={ books } deleteBook={ deleteBook } />} />
            <Route 
            path="/books/new" 
            element={ <BookForm addBook={ addBook } addErrors={ addErrors } clearErrors={ clearErrors } />} />
+           <Route path="/authors/:id" element={ <Author deleteBook={ deleteBook } /> } />
          </Routes>
     </Router>
   )
