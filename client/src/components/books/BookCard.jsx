@@ -1,9 +1,10 @@
 import React from 'react';
-import Card  from 'react-bootstrap/Card'
+import Card from "react-bootstrap/Card"
 import { baseUrl, headers } from '../../Globals';
+import { Link } from "react-router-dom";
 
 
-const BookCard = ({ book, deleteBook }) => {
+const BookCard = ({ book, deleteBook, author, deleteBookByAuthor }) => {
 
   const handleDelete = () => {
    //console.log('fetch delete Sinatra')
@@ -14,8 +15,11 @@ const BookCard = ({ book, deleteBook }) => {
    .then(res => res.json())
    .then(data => {
      deleteBook(data)
+     if(author) {
+      deleteBookByAuthor(data)
+     }
    })
-   
+
   }
 
   return (
@@ -26,7 +30,7 @@ const BookCard = ({ book, deleteBook }) => {
           <Card className="card">
             <Card.Body>
               <Card.Title>{book.title}</Card.Title>
-              <p><em>-By: { book.author.name }</em></p>
+             {book.author ? <p><em>-By: <Link to={ `/authors/${book.author.id}`}>{ book.author.name }</Link></em></p> : null}
               <Card.Text>
               { book.summary }
               </Card.Text>
@@ -41,7 +45,6 @@ const BookCard = ({ book, deleteBook }) => {
     </div>
     </div>
       
-  
       
       
       
