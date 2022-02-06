@@ -30,7 +30,7 @@ const BookCard = ({ book, deleteBook, author, deleteBookByAuthor }) => {
           <Card className="card">
             <Card.Body>
               <Card.Title>{book.title}</Card.Title>
-             {book.author ? <p><em>-By: <Link to={ `/authors/${book.author.id}`}>{ book.author.name }</Link></em></p> : null}
+             {book.author ? <p><em>By: <Link to={ `/authors/${book.author.id}`}>{ book.author.name }</Link></em></p> : null}
               <Card.Text>
               { book.summary }
               </Card.Text>

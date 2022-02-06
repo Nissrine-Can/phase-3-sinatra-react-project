@@ -32,7 +32,7 @@ const Author = ({ deleteBook }) => {
 
   return (
     <div>
-        <h2>Collection By: -<em>{ author.name }</em></h2>
+        <h2 className="list-title">Collection By: <em>{ author.name }</em></h2>
         {bookCards}
     </div>
   )
