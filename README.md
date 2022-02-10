@@ -1,3 +1,21 @@
+The main emphasis of Read Aloud App Tracker is to help educators of lower elementry grades to create and save a list of books that are intended to be read aloud during the school year and/or quarter. The book list can be viewd by author and books can be added or deleted from the list.
+
+Since this project focused mainly on creating a Ruby/Sinatra backend. I have included back-end validations from Active record. 
+
+ The Entity Relationship Diagram (ERD) of the data base:
+
+     Authors                             Books
+     ____________________________
+     id                                         id
+     name                                    title
+                                                  summary
+                                                  author_id
+
+  My ERD consist of two models (author and book) with the a has_ many relationship in the author model and a belong_to in the book model. The author_id serves as a foreign key that identifies the name of the author each book does belong to.
+
+
+
+
 # Phase 3 Project Guidelines
 
 ## Learning Goals

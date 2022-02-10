@@ -35,7 +35,7 @@ class BooksController < ApplicationController
             {errors: ["Book doesn't exist"]}.to_json
         end
        end
-    
+       
 
       private
          def find_book

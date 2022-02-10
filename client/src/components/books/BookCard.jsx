@@ -19,7 +19,6 @@ const BookCard = ({ book, deleteBook, author, deleteBookByAuthor }) => {
       deleteBookByAuthor(data)
      }
    })
-
   }
 
   return (
